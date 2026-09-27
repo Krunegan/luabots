@@ -1,0 +1,20 @@
+Inventario, crafteo y máquinas
+<h>Inventario</h>
+32 ranuras, una de herramienta y 8 de biblioteca.
+<code>inv.list()</code> lista de {slot, name, count, wear}
+<code>inv.count(nombre)</code>, <code>inv.has(nombre, n)</code>, <code>inv.free()</code>, <code>inv.slot(i)</code>, <code>inv.tool()</code>
+<code>inv.equip(nombre)</code>, <code>inv.unequip()</code>, <code>inv.swap(a, b)</code>, <code>inv.drop(nombre, cantidad, dir)</code>, <code>inv.pickup(radio)</code>
+<code>inv.use(dir, ítem, modo)</code> usa un ítem como un jugador (azada, balde, polvo de hueso...). modo: "left" o "right" (automático por defecto). Sin ítem: la ranura de herramienta.
+
+<h>Contenedores</h>
+<code>inv.put(dir, nombre, cantidad, lista)</code>, <code>inv.take(dir, nombre, cantidad, lista)</code> devuelven la cantidad movida (take: nombre nil = cualquiera)
+<code>inv.peek(dir, lista)</code>, <code>inv.lists(dir)</code>. lista: "main" por defecto; los hornos usan src, fuel, dst.
+Los cofres con llave solo se abren para jugadores reales.
+
+<h>Crafteo</h>
+<code>craft.make(ítem, veces)</code> devuelve cuántos se craftearon. <code>craft.recipes(ítem)</code>.
+
+<h>Energía y horno</h>
+<code>machine.energy()</code>, <code>machine.burn(combustible, n)</code> devuelve la energía obtenida, <code>machine.refuel(objetivo)</code>, <code>machine.auto_refuel(activo)</code>
+<code>machine.cook(ítem, n)</code> horno propio; gasta en energía el tiempo de cocción
+<code>machine.transfer(cantidad, robot)</code> da energía a otro robot cercano del mismo dueño

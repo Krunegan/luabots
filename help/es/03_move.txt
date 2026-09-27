@@ -1,0 +1,26 @@
+Movimiento y sensores
+<h>Direcciones</h>
+Relativas a hacia dónde mira el robot:
+<code>forward back left right up down
+forward_up forward_down back_up back_down
+left_up left_down right_up right_down</code>
+El movimiento usa las seis primeras.
+
+<h>Moverse y girar</h>
+<code>move.forward() back() left() right() up() down()</code> devuelven <code>true</code> o <code>false, motivo</code>. Los robots vuelan a través de aire, agua y plantas.
+<code>move.to(pos)</code> va hasta ahí buscando un camino.
+<code>turn.left() right() around()</code>, <code>turn.face("north")</code>, <code>turn.angle(grados)</code> (positivo = izquierda; las acciones usan la más cercana de las 4 direcciones).
+
+<h>Robot</h>
+<code>robot.pos() home() id() name() owner() level() limits()</code>
+<code>robot.facing()</code> devuelve el nombre ("north"...) y un vector.
+
+<h>Sensores</h>
+<code>dir</code> es una dirección o una posición cercana al robot.
+<code>sense.node(dir)</code> devuelve nombre, param2
+<code>sense.light(dir)</code>, <code>sense.is_protected(dir)</code>, <code>sense.robot(dir)</code>
+<code>sense.text(dir)</code> texto de un cartel o infotext, <code>sense.write_text(dir, texto)</code>
+<code>sense.objects(radio, tipo)</code> lista de {type, name, pos}; tipo: player, entity, item, robot
+<code>sense.players(radio)</code> nombres
+<code>sense.find(nombres, radio, max)</code> posiciones, la más cercana primero; nombres: un bloque, "group:x" o una lista
+<code>sense.time_of_day()</code>, <code>sense.day_count()</code>

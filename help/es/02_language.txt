@@ -1,0 +1,16 @@
+Lenguaje y límites
+<h>Lenguaje</h>
+Lua 5.1, sin filtros de texto. Bibliotecas: <code>string table math os coroutine bit vector json</code>. Sin archivos, <code>load</code> ni <code>debug</code>; <code>require</code> carga discos de la biblioteca.
+<code>vector.new add subtract multiply distance round offset equals to_string</code>
+<code>json.encode(t)</code>, <code>json.decode(s)</code>, <code>s:split(sep)</code>, <code>s:trim()</code>
+Las acciones (moverse, cavar...) tardan y el programa las espera. <code>sleep(s)</code>, <code>yield()</code>, <code>time()</code> (segundos desde el inicio).
+
+<h>Límites</h>
+Instrucciones por tick (unos 10 ticks por segundo): al gastarlas, el programa se pausa en la siguiente llamada a la API y sigue en el tick siguiente. Calcular sin ninguna llamada durante demasiado tiempo da error de <b>límite de CPU</b>: agregar <code>yield()</code>.
+También hay límite de memoria por tick, tamaño del programa y distancia a la base.
+Niveles: jugador (por defecto), avanzado (privilegio <code>luabots</code>), admin (<code>luabots_admin</code>). <code>robot.limits()</code>, <code>/luabots info</code>.
+
+<h>Errores</h>
+Los errores indican la línea: <code>program:12: attempt to index a nil value</code>.
+Las acciones no lanzan errores, devuelven <code>false, motivo</code>:
+<code>local ok, why = move.forward()</code>

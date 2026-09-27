@@ -1,0 +1,26 @@
+Movement and sensing
+<h>Directions</h>
+Relative to where the robot looks:
+<code>forward back left right up down
+forward_up forward_down back_up back_down
+left_up left_down right_up right_down</code>
+Movement uses the first six.
+
+<h>Move and turn</h>
+<code>move.forward() back() left() right() up() down()</code> return <code>true</code> or <code>false, reason</code>. Robots fly through air, water and plants.
+<code>move.to(pos)</code> goes there with path finding.
+<code>turn.left() right() around()</code>, <code>turn.face("north")</code>, <code>turn.angle(deg)</code> (positive = left; actions use the closest of the 4 directions).
+
+<h>Robot</h>
+<code>robot.pos() home() id() name() owner() level() limits()</code>
+<code>robot.facing()</code> returns the name ("north"...) and a vector.
+
+<h>Sensing</h>
+<code>dir</code> is a direction or a position near the robot.
+<code>sense.node(dir)</code> returns name, param2
+<code>sense.light(dir)</code>, <code>sense.is_protected(dir)</code>, <code>sense.robot(dir)</code>
+<code>sense.text(dir)</code> sign text or infotext, <code>sense.write_text(dir, text)</code>
+<code>sense.objects(radius, kind)</code> list of {type, name, pos}; kind: player, entity, item, robot
+<code>sense.players(radius)</code> names
+<code>sense.find(names, radius, max)</code> positions, closest first; names: a node, "group:x" or a list
+<code>sense.time_of_day()</code>, <code>sense.day_count()</code>

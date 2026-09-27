@@ -1,0 +1,20 @@
+Commands and settings
+<h>Commands</h>
+<code>/luabots list [all|player]</code>, <code>start robot</code>, <code>stop robot</code>, <code>edit robot</code>, <code>console robot</code>, <code>unlink robot</code>, <code>track robot|off</code>, <code>msg robot text</code>, <code>info</code>, <code>help</code>, <code>stopall [player]</code> (admins)
+<code>/buy [owner/robot]</code> (also <code>/luabots buy</code>)
+
+<h>Privileges</h>
+<b>luabots</b>: advanced level. <b>luabots_admin</b>: admin level and <code>admin.*</code>.
+Admins can open any robot (editor, inventory), run and stop it and unlink its remotes; only the owner can save its code.
+
+<h>Settings</h>
+All in the settings menu. Main ones:
+<code>luabots.player_*</code>, <code>luabots.advanced_*</code>, <code>luabots.admin_*</code>: limits per level
+<code>luabots.combat</code>, <code>luabots.mortal</code>, <code>luabots.energy</code>, <code>luabots.autostart</code>
+<code>luabots.allow_admin_commands</code>, <code>luabots.full_access_priv</code>, <code>luabots.keyboard_level</code>
+<code>luabots.no_dig</code>, <code>luabots.no_inventory</code>: nodes robots cannot dig or open (comma separated names, <code>mod:*</code>, <code>group:x</code>), for mods that duplicate items when used without their interface
+<code>luabots.visible_lists_only</code>: only inventory lists shown in the node's interface
+Admin robots ignore the last three.
+
+<h>Loaded areas</h>
+Robots only run in loaded areas. Running programs restart after a server restart (<code>luabots.autostart</code>).

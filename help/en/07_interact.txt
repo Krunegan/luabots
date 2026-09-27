@@ -1,0 +1,34 @@
+Keys, remote, forms and disks
+<h>Keyboard keys</h>
+<code>keyboard.set(pos, key, keep)</code> key blocks: 0-9, a-z, blank, white gray black red orange yellow lime green cyan blue purple magenta pink brown. Only on air or other keys. Level: <code>luabots.keyboard_level</code> (advanced by default). Removed when the program stops unless <code>keep = true</code>.
+<code>keyboard.clear(pos)</code>, <code>keyboard.get(pos)</code>
+<code>keyboard.receive()</code> returns player, key, pos, action ("punch" or "rightclick")
+
+<h>Remote</h>
+<code>remote.receive()</code> returns player, action ("use" or "place"), pos. Once called, the linked remote sends its clicks to the program.
+
+<h>Punches</h>
+<code>punch.listen(true)</code>, <code>punch.receive()</code> returns player, pos, node (nodes near the robot)
+
+<h>Forms</h>
+<code>forms.show(player, formspec)</code>, <code>forms.receive()</code> returns player, fields
+<code>forms.close(player)</code>, <code>forms.escape(text)</code>
+Players must be near (the owner: anywhere). A new window to another player fails for <code>luabots.form_close_pause</code> seconds after they close one of the owner's windows, and <code>luabots.form_combat_pause</code> seconds after combat. Updating an open window always works.
+
+<h>Screen block</h>
+<code>screen.write(dir_or_pos, text, cols, color, keep)</code>, <code>screen.clear(dir_or_pos)</code>
+The text is cleared when the program stops; <code>keep = true</code> leaves it (signs).
+
+<h>Doors, levers, buttons</h>
+<code>interact(dir, mode)</code> right-click with an empty hand; mode "punch" punches. Chest and machine windows are not opened.
+
+<h>Library disks</h>
+<code>require(title)</code> runs a disk of the library slots once and returns its value
+<code>disks.run(title, ...)</code> runs it every time, <code>disks.list()</code>
+<code>books.read(slot)</code> returns title, text, author. <code>books.write(slot, title, text)</code> writes a disk or blank book of the inventory.
+
+<h>Shop</h>
+<code>shop.add(give, give_count, want, want_count)</code> returns the offer number
+<code>shop.remove(n)</code>, <code>shop.clear()</code>, <code>shop.list()</code>. Up to 20 offers, open while the program runs.
+Players nearby buy with <b>/buy</b> or <code>/buy owner/robot</code> (a window of the mod; the robot cannot open it).
+<code>shop.receive()</code> returns player, n, offer for each sale

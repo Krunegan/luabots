@@ -1,0 +1,31 @@
+Chat, red y apariencia
+<h>Chat</h>
+<code>chat.nearby(texto)</code> jugadores a menos de <code>luabots.chat_radius</code> del robot
+<code>chat.all(texto)</code> todos los jugadores (niveles avanzado y admin)
+<code>chat.owner(texto)</code> solo el dueño
+<code>chat.tell(jugador, texto)</code> un jugador
+Todas devuelven <code>true</code> o <code>false, motivo</code>. Requieren <b>shout</b> del dueño; un mensaje por segundo por dueño.
+<code>chat.listen(true)</code>, <code>chat.receive()</code> devuelve nombre, mensaje, directo. Mensajes directos: <code>/luabots msg robot texto</code>.
+<code>colorize(color, texto)</code> para el chat y las etiquetas.
+
+<h>Red</h>
+<code>net.send(id_o_nombre, datos)</code>, <code>net.broadcast(datos, radio)</code>
+<code>net.receive()</code> devuelve from_id, datos, from_owner. <code>net.find("dueño/nombre")</code> devuelve el id.
+
+<h>Almacenamiento</h>
+Se conserva al detener y al reiniciar el servidor: <code>storage.set(clave, valor)</code>, <code>storage.get(clave)</code>, <code>storage.keys()</code>, <code>storage.clear()</code>
+
+<h>Apariencia</h>
+<code>robot.label(texto)</code> (80 caracteres), <code>robot.status(texto)</code> en el HUD del dueño, <code>robot.skin(1-6)</code>, <code>robot.size(0.5-1.5)</code>
+<code>robot.display(texto, columnas, tamaño, color)</code> texto en el pecho; <code>""</code> lo quita
+<code>robot.appearance{visual = "mesh", mesh = ..., textures = {...}, visual_size = ...}</code> visual: mesh, cube, sprite, upright_sprite, robot. Sin argumento: vuelve a la normal.
+<code>robot.animation(primero, último, velocidad, mezcla)</code>
+
+<h>Sonido y partículas</h>
+<code>robot.sound(nombre, volumen, tono)</code> beep, boop, ok, error, step o cualquier sonido cargado
+<code>robot.sounds(filtro)</code> nombres de sonidos, <code>robot.sound_stop()</code>
+<code>robot.particle(textura, tamaño, color)</code> una partícula, la ven los jugadores cercanos
+Por dueño: 40 sonidos y 20 partículas por segundo (admins: sin límite).
+
+<h>Otros</h>
+<code>print(...)</code> a la consola, <code>robot.stop()</code>

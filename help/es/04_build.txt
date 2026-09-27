@@ -1,0 +1,20 @@
+Cavar y construir
+<h>Cavar</h>
+<code>dig.forward()</code> (cualquier dirección) devuelve <code>true</code> o <code>false, motivo</code>.
+Como un jugador: usa la ranura de herramienta (la mano si la herramienta no puede cavarlo), tarda lo mismo y desgasta la herramienta. Lo obtenido va al inventario.
+Gasta energía (<code>luabots.dig_energy</code>, 1 por bloque); el combustible del inventario se quema solo, primero el carbón.
+
+<h>Colocar</h>
+<code>place.forward(ítem, param2)</code> (cualquier dirección), desde el inventario. Los callbacks del bloque se ejecutan como para un jugador.
+
+<h>Reglas</h>
+Los robots actúan como su dueño (protecciones y permisos para saltarlas) y no se alejan más de <code>robot.limits().range</code> de la base.
+
+<h>Planos</h>
+<code>blueprint.scan(pos1, pos2)</code> devuelve el área como texto.
+<code>blueprint.save(título, texto)</code> lo escribe en un disco vacío (o en el disco con ese título).
+<code>blueprint.build(título)</code> lo construye desde el bloque de enfrente, hacia la derecha y hacia arriba, girado con el robot. Usa el inventario.
+<code>blueprint.materials(título)</code> devuelve {ítem = cantidad}. <code>blueprint.read(título)</code> devuelve {size, nodes}.
+
+<h>Rellenar</h>
+<code>build.fill(largo, ancho, alto, ítem)</code> un bloque macizo enfrente, hacia la derecha y hacia arriba.

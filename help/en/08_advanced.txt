@@ -1,0 +1,37 @@
+Path finding, combat, jobs and admin
+<h>Path finding</h>
+<code>path.find(pos)</code> returns a list of positions, or nil, reason. <code>move.to(pos)</code> follows it. The search size depends on the level.
+
+<h>Combat</h>
+<code>combat.attack(target)</code> nil (closest creature within 3 nodes), a mob name or a player name. Uses the tool slot. Allowed targets: <code>luabots.combat</code> (off, mobs, all; players also need PvP).
+<code>combat.hp()</code>. Robots are mortal only with <code>luabots.mortal</code>.
+
+<h>Players</h>
+<code>player.connected()</code>, <code>player.pos(name)</code>, <code>player.view(name)</code> (players within the sensing radius)
+
+<h>Jobs</h>
+<code>job.save(value)</code>, <code>job.load()</code>, <code>job.done()</code>: progress kept across restarts. A robot switched off for being idle with a job saved starts again when someone comes back.
+<code>robot.run_reason()</code> returns "manual", "server restart" or "resumed". Every run starts on the base.
+
+<h>Crypto</h>
+<code>crypto.hash(text)</code> (SHA-1), <code>crypto.encrypt(text, key)</code>, <code>crypto.decrypt(text, key)</code> (not secure), <code>crypto.scramble(text, seed, reverse)</code>
+
+<h>Admin</h>
+Owner with <b>luabots_admin</b>. Actions are logged; protection still applies.
+<code>admin.is_admin()</code>
+<code>admin.get_node(pos)</code>, <code>admin.set_node(pos, name, param2)</code> in any loaded area
+<code>admin.teleport(pos)</code>
+<code>admin.players()</code>, <code>admin.player_info(name)</code> returns pos, hp, ping, connected, version, lang, privs, ip (ip only if the owner has ban or server)
+<code>admin.run("/command args")</code> needs <code>luabots.allow_admin_commands</code> and the privileges of the command
+<code>admin.sound(name, gain, pitch, to)</code> to: nil (every player), a player name or a distance
+<code>admin.particle(def)</code> fields of <code>core.add_particle</code>; pos defaults to the robot
+<code>admin.particles(def)</code> returns a spawner id (<code>core.add_particlespawner</code>), <code>admin.particles_stop(id)</code> (nil: all). Removed when the program stops.
+
+<h>Full access</h>
+Owner with <b>luabots_admin</b> and <code>luabots.full_access_priv</code> (<b>server</b> by default): the program gets the real API (<code>core</code>, <code>_G</code>, <code>ItemStack</code>, <code>VoxelArea</code>...) and unlimited <code>string</code> and <code>table</code>.
+<code>core.register_*</code> callbacks and <code>core.after</code> jobs last while the robot runs and are removed when it stops, so Run reloads them. Errors in them go to the console.
+<code>core.register_chatcommand("hi", {func = function(name) return true, "Hi " .. name end})
+while true do sleep(60) end</code>
+<code>robot.on_stop(fn)</code> runs fn when the program stops (Stop, error, robot removed, Run again): to remove nodes placed with <code>core.set_node</code>, which are not removed automatically.
+Nodes, items, entities, crafts, ABMs and LBMs can only be registered at startup.
+Globals stay in the program; <code>_G.x</code> is the server's. Only disks written by the owner are loaded. Loops without pauses are still stopped. Losing the privilege stops the robot.

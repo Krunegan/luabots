@@ -1,0 +1,23 @@
+Getting started
+<h>LuaBots</h>
+Robots programmed in Lua 5.1. Place a <b>Robot Base</b>, right-click it, write code and press <b>Run</b>.
+<code>chat.nearby("Hello")
+for i = 1, 5 do dig.forward() move.forward() end</code>
+<code>print()</code> output and errors go to the console.
+
+<h>Editor</h>
+<b>Run</b> save and restart, <b>Stop</b>, <b>Save</b> without running, <b>Refresh</b> console and status, <b>Reset</b> stop, clear the console and go back to the base, <b>Inventory</b>, <b>Examples</b>.
+<b>Line numbers</b> / <b>Edit</b> switch to a numbered read-only view. <b>Go to line</b>. <b>Error on line N</b> jumps to the error.
+
+<h>Run ID</h>
+One robot per owner and run ID runs at a time: starting one stops the other. Available IDs depend on the level (<code>/luabots info</code>).
+
+<h>Remote control</h>
+Place a <b>Robot Remote Control</b> on the base to link it. No program running: manual driving. Program running: control panel (start, stop, console); if the program uses <code>remote.receive()</code>, clicks go to it and sneak + use opens the panel.
+Anyone holding a linked remote can start and stop the robot, but not edit it. <b>Unlink remotes</b> (or <code>/luabots unlink robot</code>) invalidates every linked remote.
+
+<h>Idle robots</h>
+A robot stops after <code>luabots.idle_seconds</code> with nobody within <code>luabots.idle_radius</code>, or when its owner and the player who started it are offline. Admin robots never stop.
+
+<h>Eyes</h>
+Cyan: running. Grey: stopped. Red: error.

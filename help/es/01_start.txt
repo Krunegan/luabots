@@ -1,0 +1,23 @@
+Primeros pasos
+<h>LuaBots</h>
+Robots programados en Lua 5.1. Se coloca una <b>Base de robot</b>, clic derecho sobre ella, se escribe el código y se pulsa <b>Ejecutar</b>.
+<code>chat.nearby("Hola")
+for i = 1, 5 do dig.forward() move.forward() end</code>
+La salida de <code>print()</code> y los errores van a la consola.
+
+<h>Editor</h>
+<b>Ejecutar</b> guarda y reinicia, <b>Detener</b>, <b>Guardar</b> sin ejecutar, <b>Actualizar</b> consola y estado, <b>Reiniciar</b> detiene, limpia la consola y vuelve a la base, <b>Inventario</b>, <b>Ejemplos</b>.
+<b>Números de línea</b> / <b>Editar</b> cambian a una vista numerada de solo lectura. <b>Ir a línea</b>. <b>Error en la línea N</b> salta al error.
+
+<h>Run ID</h>
+Por dueño, funciona un solo robot con cada run ID: al iniciar uno se detiene el otro. Los IDs disponibles dependen del nivel (<code>/luabots info</code>).
+
+<h>Control remoto</h>
+Se vincula colocando un <b>Control remoto de robot</b> sobre la base. Sin programa: manejo manual. Con programa: panel de control (iniciar, detener, consola); si el programa usa <code>remote.receive()</code>, los clics van al programa y agacharse + usar abre el panel.
+Quien tenga un control vinculado puede iniciar y detener el robot, pero no editarlo. <b>Desvincular controles</b> (o <code>/luabots unlink robot</code>) invalida todos los controles.
+
+<h>Robots inactivos</h>
+Un robot se detiene tras <code>luabots.idle_seconds</code> sin nadie a menos de <code>luabots.idle_radius</code>, o cuando su dueño y quien lo inició están desconectados. Los robots de admins nunca se detienen.
+
+<h>Ojos</h>
+Cian: funcionando. Gris: detenido. Rojo: error.

@@ -1,0 +1,31 @@
+Chat, network and looks
+<h>Chat</h>
+<code>chat.nearby(text)</code> players within <code>luabots.chat_radius</code> of the robot
+<code>chat.all(text)</code> every player (advanced and admin levels)
+<code>chat.owner(text)</code> the owner only
+<code>chat.tell(player, text)</code> one player
+All return <code>true</code> or <code>false, reason</code>. They need the owner's <b>shout</b>; one message per second per owner.
+<code>chat.listen(true)</code>, <code>chat.receive()</code> returns name, message, direct. Direct messages: <code>/luabots msg robot text</code>.
+<code>colorize(color, text)</code> for chat and labels.
+
+<h>Network</h>
+<code>net.send(id_or_name, data)</code>, <code>net.broadcast(data, radius)</code>
+<code>net.receive()</code> returns from_id, data, from_owner. <code>net.find("owner/name")</code> returns the id.
+
+<h>Storage</h>
+Kept across stops and server restarts: <code>storage.set(key, value)</code>, <code>storage.get(key)</code>, <code>storage.keys()</code>, <code>storage.clear()</code>
+
+<h>Looks</h>
+<code>robot.label(text)</code> (80 characters), <code>robot.status(text)</code> on the owner's HUD, <code>robot.skin(1-6)</code>, <code>robot.size(0.5-1.5)</code>
+<code>robot.display(text, cols, size, color)</code> text on the chest; <code>""</code> removes it
+<code>robot.appearance{visual = "mesh", mesh = ..., textures = {...}, visual_size = ...}</code> visual: mesh, cube, sprite, upright_sprite, robot. No argument: back to normal.
+<code>robot.animation(first, last, speed, blend)</code>
+
+<h>Sound and particles</h>
+<code>robot.sound(name, gain, pitch)</code> beep, boop, ok, error, step or any loaded sound
+<code>robot.sounds(filter)</code> sound names, <code>robot.sound_stop()</code>
+<code>robot.particle(texture, size, color)</code> one particle, seen by nearby players
+Per owner: 40 sounds and 20 particles per second (admins: no limit).
+
+<h>Other</h>
+<code>print(...)</code> to the console, <code>robot.stop()</code>

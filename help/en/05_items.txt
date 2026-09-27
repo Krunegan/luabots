@@ -1,0 +1,20 @@
+Inventory, crafting and machines
+<h>Inventory</h>
+32 slots, a tool slot and 8 library slots.
+<code>inv.list()</code> list of {slot, name, count, wear}
+<code>inv.count(name)</code>, <code>inv.has(name, n)</code>, <code>inv.free()</code>, <code>inv.slot(i)</code>, <code>inv.tool()</code>
+<code>inv.equip(name)</code>, <code>inv.unequip()</code>, <code>inv.swap(a, b)</code>, <code>inv.drop(name, count, dir)</code>, <code>inv.pickup(radius)</code>
+<code>inv.use(dir, item, mode)</code> uses an item like a player (hoe, bucket, bone meal...). mode: "left" or "right" (automatic by default). No item: the tool slot.
+
+<h>Containers</h>
+<code>inv.put(dir, name, count, list)</code>, <code>inv.take(dir, name, count, list)</code> return the count moved (take: name nil = anything)
+<code>inv.peek(dir, list)</code>, <code>inv.lists(dir)</code>. list: "main" by default; furnaces use src, fuel, dst.
+Locked chests only open for real players.
+
+<h>Crafting</h>
+<code>craft.make(item, times)</code> returns the count crafted. <code>craft.recipes(item)</code>.
+
+<h>Energy and furnace</h>
+<code>machine.energy()</code>, <code>machine.burn(fuel, n)</code> returns the energy gained, <code>machine.refuel(target)</code>, <code>machine.auto_refuel(on)</code>
+<code>machine.cook(item, n)</code> built-in furnace; costs the cooking time in energy
+<code>machine.transfer(amount, robot)</code> gives energy to another robot of the owner nearby

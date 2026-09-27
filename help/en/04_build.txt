@@ -1,0 +1,20 @@
+Digging and building
+<h>Dig</h>
+<code>dig.forward()</code> (any direction) returns <code>true</code> or <code>false, reason</code>.
+Like a player: uses the tool slot (the hand when the tool cannot dig it), takes the same time, wears the tool. Drops go to the inventory.
+Costs energy (<code>luabots.dig_energy</code>, 1 per node); fuel in the inventory is burnt automatically, coal first.
+
+<h>Place</h>
+<code>place.forward(item, param2)</code> (any direction), from the inventory. Node callbacks run as for a player.
+
+<h>Rules</h>
+Robots act as their owner (protection and bypass rights) and stay within <code>robot.limits().range</code> of the base.
+
+<h>Blueprints</h>
+<code>blueprint.scan(pos1, pos2)</code> returns the area as text.
+<code>blueprint.save(title, text)</code> writes it on a blank disk (or on the disk with that title).
+<code>blueprint.build(title)</code> builds it from the node in front, to the right and up, turned with the robot. Uses the inventory.
+<code>blueprint.materials(title)</code> returns {item = count}. <code>blueprint.read(title)</code> returns {size, nodes}.
+
+<h>Fill</h>
+<code>build.fill(length, width, height, item)</code> a solid box in front, to the right and up.

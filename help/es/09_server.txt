@@ -1,0 +1,20 @@
+Comandos y configuración
+<h>Comandos</h>
+<code>/luabots list [all|jugador]</code>, <code>start robot</code>, <code>stop robot</code>, <code>edit robot</code>, <code>console robot</code>, <code>unlink robot</code>, <code>track robot|off</code>, <code>msg robot texto</code>, <code>info</code>, <code>help</code>, <code>stopall [jugador]</code> (admins)
+<code>/buy [dueño/robot]</code> (también <code>/luabots buy</code>)
+
+<h>Privilegios</h>
+<b>luabots</b>: nivel avanzado. <b>luabots_admin</b>: nivel admin y <code>admin.*</code>.
+Los admins pueden abrir cualquier robot (editor, inventario), iniciarlo, detenerlo y desvincular sus controles; solo el dueño puede guardar su código.
+
+<h>Configuración</h>
+Todo está en el menú de configuración. Lo principal:
+<code>luabots.player_*</code>, <code>luabots.advanced_*</code>, <code>luabots.admin_*</code>: límites por nivel
+<code>luabots.combat</code>, <code>luabots.mortal</code>, <code>luabots.energy</code>, <code>luabots.autostart</code>
+<code>luabots.allow_admin_commands</code>, <code>luabots.full_access_priv</code>, <code>luabots.keyboard_level</code>
+<code>luabots.no_dig</code>, <code>luabots.no_inventory</code>: bloques que los robots no pueden cavar ni abrir (nombres separados por comas, <code>mod:*</code>, <code>group:x</code>), para mods que duplican ítems si se usan sin su interfaz
+<code>luabots.visible_lists_only</code>: solo las listas de inventario que muestra la interfaz del bloque
+Los robots de admins ignoran estas tres.
+
+<h>Áreas cargadas</h>
+Los robots solo funcionan en áreas cargadas. Los programas en marcha vuelven a arrancar tras reiniciar el servidor (<code>luabots.autostart</code>).

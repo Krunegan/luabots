@@ -1,0 +1,37 @@
+Caminos, combate, trabajos y admin
+<h>Caminos</h>
+<code>path.find(pos)</code> devuelve una lista de posiciones, o nil, motivo. <code>move.to(pos)</code> la sigue. El tamaño de la búsqueda depende del nivel.
+
+<h>Combate</h>
+<code>combat.attack(objetivo)</code> nil (la criatura más cercana a 3 bloques), el nombre de un mob o de un jugador. Usa la ranura de herramienta. Objetivos permitidos: <code>luabots.combat</code> (off, mobs, all; los jugadores además requieren PvP).
+<code>combat.hp()</code>. Los robots solo son mortales con <code>luabots.mortal</code>.
+
+<h>Jugadores</h>
+<code>player.connected()</code>, <code>player.pos(nombre)</code>, <code>player.view(nombre)</code> (jugadores dentro del radio de detección)
+
+<h>Trabajos</h>
+<code>job.save(valor)</code>, <code>job.load()</code>, <code>job.done()</code>: progreso que se conserva al reiniciar. Un robot detenido por inactividad con un trabajo guardado vuelve a arrancar cuando alguien regresa.
+<code>robot.run_reason()</code> devuelve "manual", "server restart" o "resumed". Cada ejecución empieza en la base.
+
+<h>Criptografía</h>
+<code>crypto.hash(texto)</code> (SHA-1), <code>crypto.encrypt(texto, clave)</code>, <code>crypto.decrypt(texto, clave)</code> (no es seguro), <code>crypto.scramble(texto, semilla, invertir)</code>
+
+<h>Admin</h>
+Dueño con <b>luabots_admin</b>. Las acciones quedan en el log; las protecciones se siguen aplicando.
+<code>admin.is_admin()</code>
+<code>admin.get_node(pos)</code>, <code>admin.set_node(pos, nombre, param2)</code> en cualquier área cargada
+<code>admin.teleport(pos)</code>
+<code>admin.players()</code>, <code>admin.player_info(nombre)</code> devuelve pos, hp, ping, connected, version, lang, privs, ip (ip solo si el dueño tiene ban o server)
+<code>admin.run("/comando args")</code> requiere <code>luabots.allow_admin_commands</code> y los privilegios del comando
+<code>admin.sound(nombre, volumen, tono, destino)</code> destino: nil (todos los jugadores), un jugador o una distancia
+<code>admin.particle(def)</code> campos de <code>core.add_particle</code>; pos por defecto: el robot
+<code>admin.particles(def)</code> devuelve el id de un generador (<code>core.add_particlespawner</code>), <code>admin.particles_stop(id)</code> (nil: todos). Se quitan al detener el programa.
+
+<h>Acceso completo</h>
+Dueño con <b>luabots_admin</b> y <code>luabots.full_access_priv</code> (<b>server</b> por defecto): el programa recibe la API real (<code>core</code>, <code>_G</code>, <code>ItemStack</code>, <code>VoxelArea</code>...) y <code>string</code> y <code>table</code> sin límites.
+Los callbacks de <code>core.register_*</code> y las tareas de <code>core.after</code> duran mientras el robot funciona y se quitan al detenerlo, así que Ejecutar los recarga. Sus errores van a la consola.
+<code>core.register_chatcommand("hola", {func = function(name) return true, "Hola " .. name end})
+while true do sleep(60) end</code>
+<code>robot.on_stop(fn)</code> ejecuta fn cuando el programa se detiene (Detener, error, robot quitado, Ejecutar de nuevo): para quitar bloques puestos con <code>core.set_node</code>, que no se quitan solos.
+Bloques, ítems, entidades, recetas, ABM y LBM solo se registran al arrancar el servidor.
+Las variables globales quedan en el programa; <code>_G.x</code> es la del servidor. Solo se cargan discos escritos por el dueño. Los bucles sin pausas se siguen deteniendo. Perder el privilegio detiene el robot.

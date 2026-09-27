@@ -1,0 +1,171 @@
+[Gameplay]
+
+# Restart robot programs that were running when the server stopped.
+luabots.autostart (Restart programs after server restart) bool true
+
+# What robots may attack: nothing, only creatures, or creatures and players.
+# Attacking players also requires PvP to be enabled and respects protection.
+luabots.combat (Robot combat) enum mobs off,mobs,all
+
+# If enabled, robots can be damaged and destroyed.
+luabots.mortal (Robots can be destroyed) bool false
+
+# Health of mortal robots.
+luabots.robot_hp (Robot health) int 20 1 1000
+
+# Seconds a robot needs to move one node (before the level speed multiplier).
+luabots.move_time (Move time) float 0.3 0.05 10
+
+# Seconds a robot needs to turn.
+luabots.turn_time (Turn time) float 0.15 0 10
+
+# Seconds a robot needs to place a node.
+luabots.place_time (Place time) float 0.25 0.05 10
+
+# Multiplier of the normal digging time of nodes.
+luabots.dig_time_factor (Dig time multiplier) float 1.0 0.1 10
+
+[Energy]
+
+# Robots need energy to dig. They get it by burning fuel (coal first) from
+# their own inventory when they run out. Owners in creative mode need no energy.
+luabots.energy (Robots use energy) bool true
+
+# When a robot runs out of energy it burns fuel from its inventory by itself
+# (coal first). Programs can also choose the fuel with machine.burn(item).
+luabots.auto_refuel (Robots refuel automatically) bool true
+
+# Energy used for each dug node (coal gives 40 in Minetest Game).
+luabots.dig_energy (Energy per dug node) float 1 0 1000
+
+# Energy used for each step.
+luabots.move_energy (Energy per move) float 0 0 1000
+
+# Energy used for each placed node.
+luabots.place_energy (Energy per placed node) float 0 0 1000
+
+[Communication]
+
+# Robots hear and talk to players within this distance.
+luabots.chat_radius (Chat radius) int 32 1 1000
+
+# Minimum seconds between chat messages of the robots of one player
+# (shared by all their robots).
+luabots.say_interval (Chat message interval) float 1.0 0 60
+
+# Maximum distance to players a robot can show forms to (the owner is always allowed),
+# and to robot shops for /buy.
+luabots.form_radius (Form radius) int 16 1 1000
+
+# Seconds a robot owner cannot open a new window to a player who closed one of
+# their robot windows. 0 disables it.
+luabots.form_close_pause (Pause after closing a robot window) float 60 0 600
+
+# Seconds after a player hits or is hit during which other players' robots
+# cannot open windows to them. 0 disables it.
+luabots.form_combat_pause (No robot windows while fighting) float 60 0 600
+
+# robot.sound can play any loaded sound. Disabled: only the robot's own sounds.
+luabots.game_sounds (Robots can play game sounds) bool true
+
+# Sounds per second per owner. Admins: no limit.
+luabots.sounds_per_second (Robot sounds per second) int 40 1 200
+
+# Particles per second per owner (0: none). Admins: no limit.
+luabots.particles_per_second (Robot particles per second) int 20 0 200
+
+# Hearing distance of robot sounds.
+luabots.sound_distance (Robot sound distance) int 24 1 64
+
+# Lowest level that can place keyboard keys (they cost nothing).
+luabots.keyboard_level (Level needed to place keyboard keys) enum advanced player,advanced,admin
+
+[Admin]
+
+# admin.run() can run chat commands, as the owner and with the owner's privileges.
+luabots.allow_admin_commands (Admin robots can run chat commands) bool false
+
+# Owners with luabots_admin and this privilege get full access (the real API,
+# like a mod). Keep it for the server owner. Empty: nobody.
+luabots.full_access_priv (Privilege for full access robots) string server
+
+[Idle robots]
+
+# Robots with no player within this distance for idle_seconds are switched off
+# (0: never). Admins: never.
+luabots.idle_radius (Switch off robots with nobody within) int 48 0 10000
+
+# Seconds before an idle robot is switched off.
+luabots.idle_seconds (Seconds before switching off idle robots) int 60 1 86400
+
+# Switch off robots when their owner and the player who started them are offline.
+luabots.stop_when_offline (Switch off robots when their players leave) bool true
+
+[Safety]
+
+# Nodes robots cannot dig: names, "mod:*" or "group:x", comma separated. Admins: allowed.
+luabots.no_dig (Nodes robots cannot dig) string
+
+# Nodes whose inventories robots cannot use (same format). For mods that
+# duplicate items when used without their interface. Admins: allowed.
+luabots.no_inventory (Nodes robots cannot open) string
+
+# Robots only use the inventory lists shown in the node formspec. Admins: all.
+luabots.visible_lists_only (Only visible inventory lists) bool true
+
+[Performance]
+
+# Maximum robot program slices executed per server step.
+luabots.max_slices_per_step (Robot slices per server step) int 60 1 10000
+
+# Stop running robots in a server step after this many milliseconds.
+luabots.step_time_budget_ms (Time budget per server step in ms) int 25 1 1000
+
+# A program that computes without pausing for more than
+# (instructions per tick * this factor) is stopped.
+luabots.hard_limit_factor (CPU hard limit factor) int 5 1 100
+
+# Robots are paused while the server Lua memory is above this value.
+luabots.global_memory_mb (Server Lua memory limit in MB) int 1024 64
+
+# Maximum length of strings created by string/table library functions.
+luabots.max_string_kb (Maximum string size in KB) int 1024 16
+
+# Seconds between saves of robot data.
+luabots.save_interval (Save interval) int 10 1 600
+
+[Level: Player (default)]
+
+luabots.player_max_bases (Robot bases per player, 0 = unlimited) int 20 0 100000
+luabots.player_max_running (Robots running at the same time) int 3 1 1000
+luabots.player_instructions (Instructions per tick) int 20000 1000 100000000
+luabots.player_memory_mb (Memory per tick in MB) int 8 1 4096
+luabots.player_range (Max distance from base) int 24 1 31000
+luabots.player_sense_radius (Sensing radius) int 8 1 64
+luabots.player_code_kb (Max program size in KB) int 32 1 4096
+luabots.player_storage_kb (Persistent storage in KB, 0 = no limit) int 64 0 16384
+luabots.player_speed (Action speed multiplier) float 1 0.1 20
+
+[Level: Advanced (luabots privilege)]
+
+luabots.advanced_max_bases (Robot bases per player, 0 = unlimited) int 100 0 100000
+luabots.advanced_max_running (Robots running at the same time) int 10 1 1000
+luabots.advanced_instructions (Instructions per tick) int 100000 1000 100000000
+luabots.advanced_memory_mb (Memory per tick in MB) int 32 1 4096
+luabots.advanced_range (Max distance from base) int 64 1 31000
+luabots.advanced_sense_radius (Sensing radius) int 16 1 64
+luabots.advanced_code_kb (Max program size in KB) int 128 1 4096
+luabots.advanced_storage_kb (Persistent storage in KB, 0 = no limit) int 256 0 16384
+luabots.advanced_speed (Action speed multiplier) float 1.5 0.1 20
+
+[Level: Admin (luabots_admin privilege)]
+
+luabots.admin_max_bases (Robot bases per player, 0 = unlimited) int 0 0 100000
+luabots.admin_max_running (Robots running at the same time) int 50 1 1000
+luabots.admin_instructions (Instructions per tick) int 500000 1000 100000000
+luabots.admin_memory_mb (Memory per tick in MB) int 128 1 4096
+luabots.admin_range (Max distance from base) int 512 1 31000
+luabots.admin_sense_radius (Sensing radius) int 32 1 64
+luabots.admin_code_kb (Max program size in KB) int 512 1 4096
+luabots.admin_storage_kb (Persistent storage in KB, 0 = no limit) int 0 0 16384
+luabots.admin_speed (Action speed multiplier) float 3 0.1 20
