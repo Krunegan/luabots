@@ -38,6 +38,7 @@ local modules = {
 	"manual", -- manual driving with the remote control
 	"remote", -- remote keys and the shared control panel
 	"display", -- text on the robot face and the screen block
+	"linkchest", -- linked chests that send items between places
 	"appearance", -- robot.appearance / robot.animation
 	"hud", -- robot tracking on the HUD
 	"commands", -- chat commands

@@ -50,6 +50,12 @@ config.move_energy = num("move_energy", 0, 0, 1000)
 config.place_energy = num("place_energy", 0, 0, 1000)
 config.auto_refuel = bool("auto_refuel", true)
 
+-- Linked chests: energy per item sent (plus per 100 nodes of distance), stacks sent per chest and map blocks loaded from disk every 2 seconds
+config.link_energy = num("link_energy", 0.25, 0, 1000)
+config.link_distance_energy = num("link_distance_energy", 0.1, 0, 1000)
+config.link_stacks = math.floor(num("link_stacks", 4, 1, 64))
+config.link_loads = math.floor(num("link_loads", 64, 1, 10000))
+
 -- Communication
 config.chat_radius = num("chat_radius", 32, 1, 1000)
 config.say_interval = num("say_interval", 1.0, 0, 60)
@@ -153,6 +159,8 @@ config.levels = {
 		code_kb = 32, -- max program size
 		storage_kb = 64, -- persistent storage size
 		speed = 1, -- action speed multiplier
+		link_chests = 8, -- linked chests a player may own (0 = unlimited)
+		link_receivers = 2, -- receiving chests per channel (0 = unlimited)
 	}),
 	advanced = level("advanced", S("Advanced"), {
 		max_bases = 100,
@@ -164,6 +172,8 @@ config.levels = {
 		code_kb = 128,
 		storage_kb = 256,
 		speed = 1.5,
+		link_chests = 32,
+		link_receivers = 8,
 	}),
 	admin = level("admin", S("Admin"), {
 		max_bases = 0,
@@ -175,6 +185,8 @@ config.levels = {
 		code_kb = 512,
 		storage_kb = 0, -- no limit
 		speed = 3,
+		link_chests = 0,
+		link_receivers = 0,
 	}),
 }
 config.levels.player.rank = 1
@@ -183,6 +195,8 @@ config.levels.admin.rank = 3
 for _, l in pairs(config.levels) do
 	l.max_running = math.max(1, math.floor(l.max_running))
 	l.max_bases = math.max(0, math.floor(l.max_bases))
+	l.link_chests = math.max(0, math.floor(l.link_chests))
+	l.link_receivers = math.max(0, math.floor(l.link_receivers))
 end
 
 -- Returns the level table of a player (works for offline players too)

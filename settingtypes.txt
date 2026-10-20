@@ -44,6 +44,15 @@ luabots.move_energy (Energy per move) float 0 0 1000
 # Energy used for each placed node.
 luabots.place_energy (Energy per placed node) float 0 0 1000
 
+# Energy a sending linked chest uses for each item it sends.
+luabots.link_energy (Energy per item sent by a linked chest) float 0.25 0 1000
+
+# Extra energy per item for every 100 nodes between the chests (0 = distance is free).
+luabots.link_distance_energy (Linked chest energy per item and 100 nodes) float 0.1 0 1000
+
+# Stacks each sending linked chest sends every 2 seconds.
+luabots.link_stacks (Stacks sent per linked chest every 2 seconds) int 4 1 64
+
 [Communication]
 
 # Robots hear and talk to players within this distance.
@@ -134,6 +143,10 @@ luabots.max_string_kb (Maximum string size in KB) int 1024 16
 # Seconds between saves of robot data.
 luabots.save_interval (Save interval) int 10 1 600
 
+# Map blocks all linked chests together may load from disk every 2 seconds
+# (chests in unloaded areas). The rest waits for the next round.
+luabots.link_loads (Map blocks loaded by linked chests every 2 seconds) int 64 1 10000
+
 [Level: Player (default)]
 
 luabots.player_max_bases (Robot bases per player, 0 = unlimited) int 20 0 100000
@@ -145,6 +158,8 @@ luabots.player_sense_radius (Sensing radius) int 8 1 64
 luabots.player_code_kb (Max program size in KB) int 32 1 4096
 luabots.player_storage_kb (Persistent storage in KB, 0 = no limit) int 64 0 16384
 luabots.player_speed (Action speed multiplier) float 1 0.1 20
+luabots.player_link_chests (Linked chests per player, 0 = unlimited) int 8 0 100000
+luabots.player_link_receivers (Receiving linked chests per channel, 0 = unlimited) int 2 0 100000
 
 [Level: Advanced (luabots privilege)]
 
@@ -157,6 +172,8 @@ luabots.advanced_sense_radius (Sensing radius) int 16 1 64
 luabots.advanced_code_kb (Max program size in KB) int 128 1 4096
 luabots.advanced_storage_kb (Persistent storage in KB, 0 = no limit) int 256 0 16384
 luabots.advanced_speed (Action speed multiplier) float 1.5 0.1 20
+luabots.advanced_link_chests (Linked chests per player, 0 = unlimited) int 32 0 100000
+luabots.advanced_link_receivers (Receiving linked chests per channel, 0 = unlimited) int 8 0 100000
 
 [Level: Admin (luabots_admin privilege)]
 
@@ -169,3 +186,5 @@ luabots.admin_sense_radius (Sensing radius) int 32 1 64
 luabots.admin_code_kb (Max program size in KB) int 512 1 4096
 luabots.admin_storage_kb (Persistent storage in KB, 0 = no limit) int 0 0 16384
 luabots.admin_speed (Action speed multiplier) float 3 0.1 20
+luabots.admin_link_chests (Linked chests per player, 0 = unlimited) int 0 0 100000
+luabots.admin_link_receivers (Receiving linked chests per channel, 0 = unlimited) int 0 0 100000

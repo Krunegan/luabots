@@ -25,6 +25,8 @@ The in-game manual (**Help**, English and Spanish) documents every function.
 - Robots act as their owner: protection, locked nodes and node callbacks work as for a player.
 - Levels by privilege (player, `luabots`, `luabots_admin`) with configurable limits.
 - Persistent robots, inventories and `storage`.
+- Linked chests: send items between chests of the same channel at any distance, paying energy per item
+  and distance, with per-level limits and a cap on map blocks loaded from disk.
 - Full access for the server owner: the real API, and `core.register_*` callbacks that are
   removed when the robot stops, to write mods live without restarting.
 
@@ -38,7 +40,7 @@ The in-game manual (**Help**, English and Spanish) documents every function.
 - **sense**: node, light, is_protected, robot, text, write_text, objects, players, find, time_of_day, day_count
 - **inv**: list, slot, count, has, free, tool, equip, unequip, swap, drop, put, take, peek, lists, pickup, use
 - **craft**: make, recipes
-- **machine**: energy, burn, refuel, auto_refuel, cook, transfer
+- **machine**: energy, burn, refuel, auto_refuel, cook, transfer, charge
 - **build**: fill
 - **blueprint**: scan, save, read, materials, build
 - **job**: save, load, done

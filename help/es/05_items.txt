@@ -18,3 +18,11 @@ Los cofres con llave solo se abren para jugadores reales.
 <code>machine.energy()</code>, <code>machine.burn(combustible, n)</code> devuelve la energía obtenida, <code>machine.refuel(objetivo)</code>, <code>machine.auto_refuel(activo)</code>
 <code>machine.cook(ítem, n)</code> horno propio; gasta en energía el tiempo de cocción
 <code>machine.transfer(cantidad, robot)</code> da energía a otro robot cercano del mismo dueño
+<code>machine.charge(cantidad, dir)</code> da energía al cofre enlazado en esa dirección; devuelve la energía dada y la energía del cofre
+
+<h>Cofres enlazados</h>
+Un cofre enlazado en modo enviar mueve sus objetos a los cofres enlazados en modo recibir del mismo dueño y canal, a cualquier distancia, aunque la zona no esté cargada. Abrilo para elegir el canal y el modo.
+Cada pila llena los cofres receptores en un orden fijo: cuando uno se llena, el siguiente recibe el resto.
+Enviar gasta energía por objeto, más cuanto más lejos esté el cofre receptor (ver la ventana del cofre). Poné combustible en su ranura (<code>inv.put(dir, "default:coal_lump", 10, "fuel")</code>) o usá <code>machine.charge(cantidad, dir)</code>.
+Los robots los llenan y los vacían con <code>inv.put</code> e <code>inv.take</code>, como cualquier cofre.
+Tu nivel limita cuántos cofres enlazados podés tener y cuántos cofres receptores puede tener un canal.
