@@ -20,6 +20,18 @@ local function update_infotext(pos, rec)
 		luabots.display_name(rec))
 end
 
+-- Delete a robot whose base is gone, dropping its inventory where the base was
+local function destroy_robot(rec)
+	local inv = luabots.get_inventory(rec)
+	for list, size in pairs(luabots.INV_SIZES) do
+		for i = 1, size do
+			local stack = inv:get_stack(list, i)
+			if not stack:is_empty() then core.add_item(rec.home, stack) end
+		end
+	end
+	luabots.destroy(rec)
+end
+
 local function create_robot(pos, owner)
 	local level = luabots.get_level(owner)
 	if level.max_bases > 0 and luabots.owner_count(owner) >= level.max_bases then
@@ -114,21 +126,30 @@ core.register_node("luabots:base", {
 	on_destruct = function(pos)
 		local rec = base_record(pos)
 		if not rec then return end
-		-- base destroyed by other means (explosion, ...): drop the inventory
-		local inv = luabots.get_inventory(rec)
-		for list, size in pairs(luabots.INV_SIZES) do
-			for i = 1, size do
-				local stack = inv:get_stack(list, i)
-				if not stack:is_empty() then core.add_item(pos, stack) end
-			end
-		end
-		luabots.destroy(rec)
+		-- base destroyed by other means (explosion, ...)
+		destroy_robot(rec)
 	end,
 
 	on_blast = function(pos)
 		-- robots bases resist explosions
 	end,
 })
+
+-- Bases removed without on_destruct (VoxelManip, WorldEdit, swap_node...): delete their robots too
+local orphan_timer = 0
+core.register_globalstep(function(dtime)
+	orphan_timer = orphan_timer + dtime
+	if orphan_timer < 5 then return end
+	orphan_timer = 0
+	for _, rec in pairs(luabots.records) do
+		local node = core.get_node_or_nil(rec.home)
+		if node and node.name ~= "luabots:base" then
+			core.log("action", ("[luabots] base of %s (%s) is gone, robot removed"):format(
+				luabots.display_name(rec), rec.id))
+			destroy_robot(rec)
+		end
+	end
+end)
 
 -- Keyboard keys
 

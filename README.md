@@ -30,38 +30,36 @@ The in-game manual (**Help**, English and Spanish) documents every function.
 
 ## API
 
-| Table | Functions |
-|---|---|
-| globals | `print sleep yield time colorize interact require` |
-| `robot` | `id name run_id run_reason owner level limits used pos home facing energy hp label status skin size sound sound_stop sounds particle appearance animation display stop` |
-| `move` | `forward back left right up down to` |
-| `turn` | `left right around face angle` |
-| `dig` / `place` | `forward back left right up down forward_up forward_down back_up back_down left_up left_down right_up right_down` |
-| `sense` | `node light is_protected robot text write_text objects players find time_of_day day_count` |
-| `inv` | `list slot count has free tool equip unequip swap drop put take peek lists pickup use` |
-| `craft` | `make recipes` |
-| `machine` | `energy burn refuel auto_refuel cook transfer` |
-| `build` | `fill` |
-| `blueprint` | `scan save read materials build` |
-| `job` | `save load done` |
-| `chat` | `nearby all owner tell listen receive` |
-| `net` | `send broadcast receive find` |
-| `player` | `connected pos view` |
-| `punch` | `listen receive` |
-| `forms` | `show close receive escape` |
-| `shop` | `add remove clear list receive` |
-| `screen` | `write clear` |
-| `remote` | `receive` |
-| `keyboard` | `set clear get receive` |
-| `books` | `read write` |
-| `disks` | `list load run` |
-| `storage` | `get set keys clear` |
-| `path` | `find` |
-| `combat` | `attack hp` |
-| `crypto` | `hash encrypt decrypt scramble` |
-| `admin` | `is_admin get_node set_node teleport players player_info run sound particle particles particles_stop` |
+- **globals**: print, sleep, yield, time, colorize, interact, require
+- **robot**: id, name, run_id, run_reason, owner, level, limits, used, pos, home, facing, energy, hp, label, status, skin, size, sound, sound_stop, sounds, particle, appearance, animation, display, stop
+- **move**: forward, back, left, right, up, down, to
+- **turn**: left, right, around, face, angle
+- **dig / place**: forward, back, left, right, up, down, forward_up, forward_down, back_up, back_down, left_up, left_down, right_up, right_down
+- **sense**: node, light, is_protected, robot, text, write_text, objects, players, find, time_of_day, day_count
+- **inv**: list, slot, count, has, free, tool, equip, unequip, swap, drop, put, take, peek, lists, pickup, use
+- **craft**: make, recipes
+- **machine**: energy, burn, refuel, auto_refuel, cook, transfer
+- **build**: fill
+- **blueprint**: scan, save, read, materials, build
+- **job**: save, load, done
+- **chat**: nearby, all, owner, tell, listen, receive
+- **net**: send, broadcast, receive, find
+- **player**: connected, pos, view
+- **punch**: listen, receive
+- **forms**: show, close, receive, escape
+- **shop**: add, remove, clear, list, receive
+- **screen**: write, clear
+- **remote**: receive
+- **keyboard**: set, clear, get, receive
+- **books**: read, write
+- **disks**: list, load, run
+- **storage**: get, set, keys, clear
+- **path**: find
+- **combat**: attack, hp
+- **crypto**: hash, encrypt, decrypt, scramble
+- **admin**: is_admin, get_node, set_node, teleport, players, player_info, run, sound, particle, particles, particles_stop
 
-Libraries: `string table math os coroutine bit vector json`.
+Libraries: string, table, math, os, coroutine, bit, vector, json.
 
 ## Commands
 
